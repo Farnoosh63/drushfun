@@ -25,7 +25,7 @@ Legal information about Drupal:
 CONFIGURATION AND FEATURES
 --------------------------
 #### Exporting the Database
-1- n phpMyAdmin, select your database from the sidebar list, then select the Export tab.
+1- In phpMyAdmin, select your database from the sidebar list, then select the Export tab.
 
 2- In this menu we'll change the Export Method to Custom.
 
