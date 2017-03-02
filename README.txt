@@ -24,25 +24,45 @@ Legal information about Drupal:
 
 CONFIGURATION AND FEATURES
 --------------------------
+#### Exporting the Database
+1- n phpMyAdmin, select your database from the sidebar list, then select the Export tab.
 
-Drupal core (what you get when you download and extract a drupal-x.y.tar.gz or
-drupal-x.y.zip file from http://drupal.org/project/drupal) has what you need to
-get started with your website. It includes several modules (extensions that add
-functionality) for common website features, such as managing content, user
-accounts, image uploading, and search. Core comes with many options that allow
-site-specific configuration. In addition to the core modules, there are
-thousands of contributed modules (for functionality not included with Drupal
-core) available for download.
+2- In this menu we'll change the Export Method to Custom.
 
-More about configuration:
- * Install, upgrade, and maintain Drupal:
-   See INSTALL.txt and UPGRADE.txt in the same directory as this document.
- * Learn about how to use Drupal to create your site:
-   http://drupal.org/documentation
- * Download contributed modules to sites/all/modules to extend Drupal's
-   functionality:
-   http://drupal.org/project/modules
- * See also: "Developing for Drupal" for writing your own modules, below.
+3- In the Format section verify that SQL is selected.
+
+4- In Tables verify that all tables are selected for export.
+
+5- In the Output section, select Save output to a file and choose zipped for the compression type. Avoid the gzipped compression because it gets corrupted easily. You can leave the Format-specific options in their default state.
+
+6- Under Object creation options make sure every option is selected except the IF NOT EXISTS box in the create table options. Finally, the Data creation options can be left as default. Click Go to export your database.
+
+
+#### Import the Database Dump
+1- Open phpMyAdmin and click on the "Import" tab.
+
+2- Leave all the default settings and make sure the character set is "utf-8" to match the collation selection we made when we created the database: "utf8_general_ci".
+
+3- Now click on the "Choose File" button next to "Browse your computer" and select the .sql.zip file we included in our sites/db-backup folder. It's okay to leave it zipped.
+
+4- Then click the "Go" button on the bottom left.
+
+#### Create the Database User
+we must recreate the database username/password that Drupal uses to store things in the database. We do this the same way we did when we created the database.
+
+1- After importing the .sql.zip file, select the "Privileges" tab and click on "Add User".
+2- Use the same username and password from before. (If we have forgotten what that was, we can always find that information in settings.php, or in the PDO Exception error message we saw displayed in the browser.)
+
+After importing the database, if you have any trouble logging in with your Site Maintenance account, clear your browser's cookies by clearing the browser history.
+
+#### Built-In Users and Databases
+When continuing work on a project, you may want to delete previous users and databases from phpmyadmin. Keep in mind you should never delete SQL's built-in users and databases. This includes the information_schema, mysql, and performance_schema databases, and the root user.
+
+Deleting any of these will cause errors that are tricky to fix.
+
+
+#### server
+http://localhost:8888/
 
 INSTALLATION PROFILES
 ---------------------
